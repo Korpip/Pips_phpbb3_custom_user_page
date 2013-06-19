@@ -33,6 +33,12 @@ float: right;
 #streamlist {
 float: left;
 }
+#clock {
+float: top;
+}
+#iframe_mask {
+		overflow-y:hidden;
+	}
 </style>
 </head>
 <HTML>
@@ -40,12 +46,13 @@ float: left;
 <center>
 <div id="navbar">
 <ul>
-<li><a href="http://acestream.com/">Home</a></li>
-<li><a href="http://acestream.com/stream/">The Stream</a></li>
+<li><a href="http://acestream.com/s.php?u=home">Home</a></li>
+<li><a href="http://acestream.com/s.php?u=acedotcom">Aces Stream</a></li>
 <li><a href="http://acestream.com/s.php?u=Forum">The Forum</a></li>
 <li><a href="http://acestream.com/s.php?u=Doogler">The Chan</a></li>
-<li><a href="http://www.facebook.com/acestream">ACEbook</a></li>
-<li><script type="text/javascript" src="http://localtimes.info/clock.php?cp3_Hex=FFB200&cp2_Hex=2D2928&cp1_Hex=AAAAAA&fwdt=150&ham=0&hbg=0&hfg=0&sid=1&mon=0&wek=0&wkf=0&sep=0&continent=North America&country=United States&province=Illinois&city=Belleville&widget_number=1100"></script></li>
+<li><a href="http://acestream.com/s.php?u=ACEBook">ACEbook</a></li>
+<li><a href="http://acestream.com/s.php?u=streamstart">Get Your Own Page</a></li>
+<li><script id="clock" type="text/javascript" src="http://localtimes.info/clock.php?cp3_Hex=FFB200&cp2_Hex=2D2928&cp1_Hex=AAAAAA&fwdt=150&ham=0&hbg=0&hfg=0&sid=1&mon=0&wek=0&wkf=0&sep=0&continent=North America&country=United States&province=Illinois&city=Belleville&widget_number=1100"></script></li>
 <?php 
 $arr = getstreamgodsid();
 $streammenu = 'On';
@@ -69,8 +76,7 @@ if (!isset($mo) || empty($mo)) {}
 else { print ('<IMG SRC =' . $mo . '>');  }?>
 </div>
 </center>
-<?php echo getdatatoseecustomuserpage(curPageURL());?>  
-<center><a href="http://acestream.com/?p=310"><img src="http://acestream.com/forum/styles/khaki_black/imageset/doogie.png"></a></center>
+<?php echo getdatatoseecustomuserpage(curPageURL());?> 
 </div>
 </body>
 </html>
