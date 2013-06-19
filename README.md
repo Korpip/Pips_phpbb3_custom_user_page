@@ -14,3 +14,6 @@ That will be an optional for for your users.
 Create "acepage" "textarea" make sure to set max # of characters to something decent like 2000 and allow any characters.
 
 Create "streamingnow" "Boolean (Yes/No)" Setting this toggle will place the user in the public viewing list.
+
+I made user accounts with certain names.
+You can see them in s.php in the nav section.
