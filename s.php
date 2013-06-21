@@ -1,11 +1,9 @@
-<?php
-//This part includes all the shit I made in php for the site.
-include('./streamutils.php');
-?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>acestream.com</title>
-<meta name="description" content="" />
 <style type="text/css"> 
-html, body { padding: 0px; margin: 0px; border: 0px;}
  #navbar ul { 
 	margin: 0; 
 	padding: 5px; 
@@ -30,52 +28,113 @@ float: bottom;
 #userpanel {
 float: right;
 }
+#registerpanel {
+float: right;
+}
+#loginpanel {
+float: right;
+}
 #streamlist {
 float: left;
 }
-#clock {
-float: top;
+#tag_ora {
+color: #aaaaaa;
+font-weight:900;
 }
-#iframe_mask {
-		overflow-y:hidden;
-	}
+#userpage {
+height: 100%;
+width: 100%;
+}
+      body
+          {
+          margin : 0;
+          padding: 0;
+          }
 </style>
+<script type="text/javascript">
+<!--
+function calcHeight()
+{
+//find the height of the internal page
+var the_height=
+document.getElementById('the_iframe').contentWindow.
+document.body.scrollHeight;
+
+//change the height of the iframe
+document.getElementById('the_iframe').height=
+the_height;
+}
+//-->
+<!--
+var serverdate = new Date(<?php echo date('y,n,j,G,i,s'); ?>);
+var hour24 = serverdate.getHours();
+var minute = serverdate.getMinutes();
+var seconds = serverdate.getSeconds();
+
+function minTwoDigits(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+function ceas() {
+  seconds++;
+  if (seconds>59) {
+    seconds = 0;
+    minute++;
+  }
+  if (minute>59) {
+    minute = 0;
+    hour24++;
+  }
+  if (hour24>23) {
+    hour24 = 0;
+  }
+  if (hour24 >= 13 && hour24 <= 24) {
+    y=12;
+    hour12 = hour24-y;
+  }
+   if (hour24 >= 1 && hour24 <= 12) {
+    hour12 = hour24;
+  }
+var output = ""+minTwoDigits(hour12)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+""
+document.getElementById("tag_ora").innerHTML = output;
+}
+window.onload = function(){
+  setInterval("ceas()", 1000);
+}
+--></script>
 </head>
-<HTML>
-<body style="background-color: #4A4344;">
-<center>
+<body class="bbox" style="background-color: #4A4344;">
 <div id="navbar">
-<ul>
-<li><a href="http://acestream.com/s.php?u=home">Home</a></li>
-<li><a href="http://acestream.com/s.php?u=acedotcom">Aces Stream</a></li>
-<li><a href="http://acestream.com/s.php?u=Forum">The Forum</a></li>
-<li><a href="http://acestream.com/s.php?u=Doogler">The Chan</a></li>
-<li><a href="http://acestream.com/s.php?u=ACEBook">ACEbook</a></li>
-<li><a href="http://acestream.com/s.php?u=streamstart">Get Your Own Page</a></li>
-<li><script id="clock" type="text/javascript" src="http://localtimes.info/clock.php?cp3_Hex=FFB200&cp2_Hex=2D2928&cp1_Hex=AAAAAA&fwdt=150&ham=0&hbg=0&hfg=0&sid=1&mon=0&wek=0&wkf=0&sep=0&continent=North America&country=United States&province=Illinois&city=Belleville&widget_number=1100"></script></li>
+
 <?php 
+include('./streamutils.php');
 $arr = getstreamgodsid();
 $streammenu = 'On';
 $isannyone;
 if (empty($arr)) {$isannyone = "No one is streaming"; }
-else { $isannyone = "Acestream.com Streamer list!"; }
-echo "<select id=streamlist onchange='window.location.href=this.options[this.selectedIndex].value;'>";
+else { $isannyone = "The Other Streamers!"; }
+echo "<select id='streamlist' onchange='window.location.href=this.options[this.selectedIndex].value;'>";
 echo "<option value='s.php?u=acedotcom'>$isannyone</option>";
 foreach($arr as $option){
 echo "<option value='s.php?u={$option}'>{$option}</option>";   
 }
 echo "</select>";
-userpanel(); ?>
+?>
+<ul id="nav">
+<li><a href="s.php?u=home">Home</a></li>
+<li><a href="s.php?u=acedotcom">Aces Stream</a></li>
+<li><a href="s.php?u=Forum">The Forum</a></li>
+<li><a href="s.php?u=Doogler">The Chan</a></li>
+<li><a href="http://acestream.com/s.php?u=streamstart">Get Your Own Page</a></li>
+<li id="tag_ora" ></li>
+<?php userpanel(); ?>
 </ul>
-	</center>
 </div><!-- #nav -->
-<center>
-<div id="acebanner">
+<div>
 <?php $mo = getdatatoseecustomuserbanner(curPageURL());
 if (!isset($mo) || empty($mo)) {}
-else { print ('<IMG SRC =' . $mo . '>');  }?>
+else { print ('<center><IMG id=acebanner SRC =' . $mo . '></center>');  }?>
 </div>
-</center>
+<div id="userpage">
 <?php echo getdatatoseecustomuserpage(curPageURL());?> 
 </div>
 </body>
