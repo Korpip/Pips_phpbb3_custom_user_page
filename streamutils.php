@@ -148,12 +148,11 @@ echo '<li id="userpanel"><a href="http://acestream.com/forum/ucp.php">You are lo
 else{
      // echo'You are not logged in<br /><a title="Log Yourself In" href="forum/ucp.php?mode=login">Log In</a> or
           // <a title="Register" href="forum/ucp.php?mode=register"> Register</a>';
-		  echo '<li id="userpanel"><a href="forum/ucp.php?mode=login">or here to register</a></li>';
-		  echo '<li id="userpanel"><a href="forum/ucp.php?mode=login">Click here to login</a></li>';
+		  echo '<li id="registerpanel"><a href="forum/ucp.php?mode=register">or here to register</a></li>';
+		  echo '<li id="loginpanel"><a href="forum/ucp.php?mode=login">Click here to login</a></li>';
 
 		  }
 		  
 }
-
 
 ?>
