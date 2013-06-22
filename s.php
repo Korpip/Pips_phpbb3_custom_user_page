@@ -1,5 +1,8 @@
+<?php 
+include('./streamutils.php'); ?> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>acestream.com</title>
@@ -106,7 +109,6 @@ window.onload = function(){
 <div id="navbar">
 
 <?php 
-include('./streamutils.php');
 $arr = getstreamgodsid();
 $streammenu = 'On';
 $isannyone;
@@ -123,7 +125,6 @@ echo "</select>";
 <li><a href="s.php?u=home">Home</a></li>
 <li><a href="s.php?u=acedotcom">Aces Stream</a></li>
 <li><a href="s.php?u=Forum">The Forum</a></li>
-<li><a href="s.php?u=Doogler">The Chan</a></li>
 <li><a href="http://acestream.com/s.php?u=streamstart">Get Your Own Page</a></li>
 <li id="tag_ora" ></li>
 <?php userpanel(); ?>
@@ -135,7 +136,8 @@ if (!isset($mo) || empty($mo)) {}
 else { print ('<center><IMG id=acebanner SRC =' . $mo . '></center>');  }?>
 </div>
 <div id="userpage">
-<?php echo getdatatoseecustomuserpage(curPageURL());?> 
+<?php echo getdatatoseecustomuserpage(curPageURL());
+?> 
 </div>
 </body>
 </html>
