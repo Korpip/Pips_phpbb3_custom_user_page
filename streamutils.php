@@ -132,12 +132,12 @@ function userpanel () {
 global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
 $userspage = parse_url($url);
 $streamon;
-if ( $user->profile_fields['pf_streamingnow'] = 1 ) {
-$streamon = "No";}
-else {
-$streamon = "Yes";}
+if ( $user->profile_fields['pf_streamingnow'] == 2 ) {
+$streamon = "off";}
+else if ( $user->profile_fields['pf_streamingnow'] == 1 ) {
+$streamon = "on";}
 if($user->data['is_registered']){
-echo '<li id="userpanel"><a href="http://acestream.com/forum/ucp.php">You are logged in as ' . $user->data['username'] . ' and your streaming status is set to ' .$streamon. ' </a></li>';
+echo '<li id="userpanel"><a href="http://acestream.com/forum/ucp.php?i=173">Hey ' . $user->data['username'] . ' your AcePage is ' .$streamon. ' </a></li>';
      // echo'<p><font size="3"><span style="background: #000000; color: #FFFFFF; padding: 5px 5px 5px 5px;"> You are logged in as ' . $user->data['username'] . '</span><br /></font></p>
 	 // <p><font size="3"><span style="background: #000000; color: #FFFFFF; padding: 5px 5px 5px 5px;">
 	 // Your streaming status is set to ' .$streamon. ' </span><br /></font>
