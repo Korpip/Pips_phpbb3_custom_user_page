@@ -56,6 +56,16 @@ width: 100%;
 </style>
 <script type="text/javascript">
 <!--
+function openWin(name,w,h) {
+    var divText = document.getElementById(name).outerHTML;
+    var myWindow = window.open('', '', 'width='+w+',height='+h);
+    var doc = myWindow.document;
+    doc.open();
+    doc.write(divText);
+    doc.close();
+}
+//-->
+<!--
 function calcHeight()
 {
 //find the height of the internal page
