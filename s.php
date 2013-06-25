@@ -56,6 +56,11 @@ width: 100%;
 </style>
 <script type="text/javascript">
 <!--
+      function replaceContentInContainer(target,source) {
+        document.getElementById(target).innerHTML  = document.getElementById(source).innerHTML;
+      }
+//-->
+<!--
 function openWin(name,w,h) {
     var divText = document.getElementById(name).outerHTML;
     var myWindow = window.open('', '', 'width='+w+',height='+h);
