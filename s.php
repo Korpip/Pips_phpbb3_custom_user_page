@@ -1,150 +1,51 @@
-<?php 
-include('./streamutils.php'); ?> 
+<?php include('./streamutils.php'); ?> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>acestream.com</title>
-<style type="text/css"> 
- #navbar ul { 
-	margin: 0; 
-	padding: 5px; 
-	list-style-type: none; 
-	text-align: center; 
-	background-color: #2d2928; 
-	} 
-#navbar ul li {  
-	display: inline; 
-	} 
-#navbar ul li a { 
-float: bottom;
-	text-decoration: none; 
-	padding: .2em 1em; 
-	color: #aaaaaa; 
-	background-color: #2d2928; 
-	} 
-#navbar ul li a:hover { 
-	color: #aaaaaa; 
-	background-color: #373331; 
-	} 
-#userpanel {
-float: right;
-}
-#registerpanel {
-float: right;
-}
-#loginpanel {
-float: right;
-}
-#streamlist {
-float: left;
-}
-#tag_ora {
-color: #aaaaaa;
-font-weight:900;
-}
-#userpage {
-height: 100%;
-width: 100%;
-}
-      body
-          {
-          margin : 0;
-          padding: 0;
-          }
-</style>
+<script type="text/javascript" src="http://jserrlog.appspot.com/jserrlog-min.js"></script>
 <script type="text/javascript">
-<!--
-      function replaceContentInContainer(target,source) {
-        document.getElementById(target).innerHTML  = document.getElementById(source).innerHTML;
-      }
-//-->
-<!--
-function openWin(name,w,h) {
-    var divText = document.getElementById(name).outerHTML;
-    var myWindow = window.open('', '', 'width='+w+',height='+h);
-    var doc = myWindow.document;
-    doc.open();
-    doc.write(divText);
-    doc.close();
-}
-//-->
-<!--
-function calcHeight()
-{
-//find the height of the internal page
-var the_height=
-document.getElementById('the_iframe').contentWindow.
-document.body.scrollHeight;
-
-//change the height of the iframe
-document.getElementById('the_iframe').height=
-the_height;
-}
-//-->
-<!--
 var serverdate = new Date(<?php echo date('y,n,j,G,i,s'); ?>);
-var hour24 = serverdate.getHours();
-var minute = serverdate.getMinutes();
-var seconds = serverdate.getSeconds();
+// Configure site parameters
 
-function minTwoDigits(n) {
-  return (n < 10 ? '0' : '') + n;
-}
-function ceas() {
-  seconds++;
-  if (seconds>59) {
-    seconds = 0;
-    minute++;
-  }
-  if (minute>59) {
-    minute = 0;
-    hour24++;
-  }
-  if (hour24>23) {
-    hour24 = 0;
-  }
-  if (hour24 >= 13 && hour24 <= 24) {
-    y=12;
-    hour12 = hour24-y;
-  }
-   if (hour24 >= 1 && hour24 <= 12) {
-    hour12 = hour24;
-  }
-var output = ""+minTwoDigits(hour12)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+""
-document.getElementById("tag_ora").innerHTML = output;
-}
-window.onload = function(){
-  setInterval("ceas()", 1000);
-}
---></script>
+jsErrLog.debugMode = true;
+
+// Optionally add additional debug information to the jsErrLog.info message field
+
+//jsErrLog.info = "Populated the Info Message to pass to logger"
+
+</script>
+<link rel="stylesheet" type="text/css" href="acepage.css">
+<script type="text/javascript" src="acepage.js"></script>
 </head>
 <body class="bbox" style="background-color: #4A4344;">
 <div id="navbar">
-
+<ul id="nav">
 <?php 
 $arr = getstreamgodsid();
 $streammenu = 'On';
 $isannyone;
 if (empty($arr)) {$isannyone = "No one is streaming"; }
 else { $isannyone = "The Other Streamers!"; }
-echo "<select id='streamlist' onchange='window.location.href=this.options[this.selectedIndex].value;'>";
-echo "<option value='s.php?u=acedotcom'>$isannyone</option>";
+
+echo "<li id='streamermenu' class='menuitemwithsub'><a href='s.php?u=acedotcom'>$isannyone</a>";
+echo "<ul>";
 foreach($arr as $option){
-echo "<option value='s.php?u={$option}'>{$option}</option>";   
+	echo "</br><li><a href='s.php?u={$option}'>{$option}</a></li>";
 }
-echo "</select>";
+echo "</ul>";
+echo "</li>";
 ?>
-<ul id="nav">
 <li><a href="s.php?u=home">Home</a></li>
 <li><a href="s.php?u=acedotcom">Aces Stream</a></li>
 <li><a href="s.php?u=Forum">The Forum</a></li>
 <li><a href="http://acestream.com/s.php?u=streamstart">Get Your Own Page</a></li>
-<li id="tag_ora" ></li>
+<li id="clock" ></li>
 <?php userpanel(); ?>
 </ul>
-</div><!-- #nav -->
+</div>
 <div>
 <?php $mo = getdatatoseecustomuserbanner(curPageURL());
 if (!isset($mo) || empty($mo)) {}
