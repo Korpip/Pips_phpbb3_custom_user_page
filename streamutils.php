@@ -3,7 +3,7 @@ define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
-
+include($phpbb_root_path . 'includes/functions_user.' . $phpEx);
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
@@ -16,6 +16,11 @@ $template->assign_vars(array(
     'FULL_NAME'         => $full_name
 ));
 // END
+
+//UserPage data
+$streamon;
+//UserPage data
+
 // Get URL function
 function curPageURL() {
  $pageURL = 'http';
@@ -119,35 +124,19 @@ global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
 		return $whoisstreaming;
 }
 
-/* function toggleissreaming ($url) {
-global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
-$userspage = parse_url($url);
-$sql = 'UPDATE phpbb_profile_fields_data
-SET pf_streamingnow=1
-WHERE ' . $user->data['user_id'] . ' = ' . $user->profile_fields['user_id'] . '';
-$db->sql_query($sql);
-header("Location: $userspage"); } */
 
 function userpanel () {
 global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
 $userspage = parse_url($url);
-$streamon;
+
 if ( $user->profile_fields['pf_streamingnow'] == 2 ) {
-$streamon = "off";}
+$streamon = "off :(";}
 else if ( $user->profile_fields['pf_streamingnow'] == 1 ) {
-$streamon = "on";}
+$streamon = "on!";}
 if($user->data['is_registered']){
 echo '<li id="userpanel"><a href="http://acestream.com/forum/ucp.php?i=173">Hey ' . $user->data['username'] . ' your AcePage is ' .$streamon. ' </a></li>';
-     // echo'<p><font size="3"><span style="background: #000000; color: #FFFFFF; padding: 5px 5px 5px 5px;"> You are logged in as ' . $user->data['username'] . '</span><br /></font></p>
-	 // <p><font size="3"><span style="background: #000000; color: #FFFFFF; padding: 5px 5px 5px 5px;">
-	 // Your streaming status is set to ' .$streamon. ' </span><br /></font>
-	 // </p>
-	 // <p><font size="3"><span style="background: #000000; color: #FFFFFF; padding: 5px 5px 5px 5px;">
-	 // <a title="See You Later" href="' . append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=logout', true, $user->session_id). '">Log out</a></span><br /></font></p>	 ';
 	 }
 else{
-     // echo'You are not logged in<br /><a title="Log Yourself In" href="forum/ucp.php?mode=login">Log In</a> or
-          // <a title="Register" href="forum/ucp.php?mode=register"> Register</a>';
 		  echo '<li id="registerpanel"><a href="forum/ucp.php?mode=register">or here to register</a></li>';
 		  echo '<li id="loginpanel"><a href="forum/ucp.php?mode=login">Click here to login</a></li>';
 
