@@ -29,7 +29,7 @@ the_height;
 }
 //-->
 <!--
-
+var hour12;
 var hour24 = serverdate.getHours();
 var minute = serverdate.getMinutes();
 var seconds = serverdate.getSeconds();
