@@ -1,29 +1,15 @@
-body
-          {
-          margin : 0;
-          padding: 0;
+body {
+    margin : 0;
+    padding: 0;
 }
- #navbar ul { 
-  margin: 0; 
-	padding: 5px; 
-	list-style-type: none; 
-	text-align: center; 
-	background-color: #2d2928; 
-	} 
-#navbar ul li {  
-	display: inline; 
-	} 
-#navbar ul li a { 
-float: bottom;
-	text-decoration: none; 
-	padding: .2em 1em; 
-	color: #aaaaaa; 
-	background-color: #2d2928; 
-	} 
-#navbar ul li a:hover { 
-	color: #aaaaaa; 
-	background-color: #373331; 
-	} 
+/*Initialize*/
+#clock {
+color: #aaaaaa;
+font-weight:900;
+}
+#streamlist {
+float: left;
+}
 #userpanel {
 float: right;
 }
@@ -33,27 +19,37 @@ float: right;
 #loginpanel {
 float: right;
 }
-#streamlist {
-float: left;
+ul#menu, ul#menu ul.sub-menu {
+    padding:0;
+    margin: 0;
+	text-align: center; 
+	background-color: #2d2928; 
+	list-style-type: none; 
 }
-#streamermenu {
-float: left;
-}
-#clock {
-color: #aaaaaa;
-font-weight:900;
-}
-#userpage {
-height: 100%;
-width: 100%;
-}
-.menuitemwithsub:hover ul {
-    display: block;
-	float: left;
-}
-.menuitemwithsub ul {
-float: left;
-    top: 40px;
-    display: none;
+ul#menu li, ul#menu ul.sub-menu li {
     list-style-type: none;
-}​
+    display: inline-block;
+}
+/*Link Appearance*/
+ul#menu li a, ul#menu li ul.sub-menu li a {
+    text-decoration: none;
+    color: #aaaaaa;
+	background-color: #2d2928; 
+    padding: 5px;
+    display:inline-block;
+}
+/*Make the parent of sub-menu relative*/
+ul#menu li {
+    position: relative;
+}
+/*sub menu*/
+ul#menu li ul.sub-menu {
+    display:none;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100px;
+}
+ul#menu li:hover ul.sub-menu {
+    display:block;
+}
