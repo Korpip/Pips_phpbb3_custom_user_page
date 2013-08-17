@@ -89,6 +89,32 @@ global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
 		$foo = htmlspecialchars_decode($rowid['pf_user_banner']);
 		return $foo;
 }
+function getdatatoseecustomusercolor($url) {
+global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
+		$userspage = parse_url($url);
+		$selecteduser = str_replace('u=', '', $userspage[query]);
+		$sql_array = array(
+			'username'    => $selecteduser,
+		);
+		$sql = 'SELECT user_id 
+				FROM ' . USERS_TABLE . ' 
+				WHERE ' . $db->sql_build_array('SELECT', $sql_array);
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);                       
+		$db->sql_freeresult($result);
+		$selecteduserid = $row['user_id'];
+		$sql_arrayid = array(
+			'user_id'    => $selecteduserid,
+		);
+		$sqlid = 'SELECT pf_page_color 
+				FROM `phpbb_profile_fields_data` 
+				WHERE ' . $db->sql_build_array('SELECT', $sql_arrayid);
+		$resultid = $db->sql_query($sqlid);
+		$rowid = $db->sql_fetchrow($resultid);                       
+		$db->sql_freeresult($resultid);
+		$foo = htmlspecialchars_decode($rowid['pf_page_color']);
+		return $foo;
+}
 
 function getstreamgodsid () {
 global $phpbb_root_path, $phpEx, $user, $db, $config, $cache, $template;
@@ -134,11 +160,11 @@ $streamon = "off :(";}
 else if ( $user->profile_fields['pf_streamingnow'] == 1 ) {
 $streamon = "on!";}
 if($user->data['is_registered']){
-echo '<li id="userpanel"><a href="http://acestream.com/forum/ucp.php?i=173">Hey ' . $user->data['username'] . ' your AcePage is ' .$streamon. ' </a></li>';
+echo '<li id="aceuserpanel"><a href="forum/ucp.php?i=173">Hey ' . $user->data['username'] . ' your AcePage is ' .$streamon. ' </a></li>';
 	 }
 else{
-		  echo '<li id="registerpanel"><a href="forum/ucp.php?mode=register">or here to register</a></li>';
-		  echo '<li id="loginpanel"><a href="forum/ucp.php?mode=login">Click here to login</a></li>';
+		  echo '<li id="aceregisterpanel"><a href="forum/ucp.php?mode=register">or here to register</a></li>';
+		  echo '<li id="aceloginpanel"><a href="forum/ucp.php?mode=login">Click here to login</a></li>';
 
 		  }
 		  
