@@ -29,35 +29,22 @@ the_height;
 }
 //-->
 <!--
-var hour12;
 var hour24 = serverdate.getHours();
+var hour = hour24;
 var minute = serverdate.getMinutes();
 var seconds = serverdate.getSeconds();
+var ampm = " PM "
 
-function minTwoDigits(n) {
-return (n < 10 ? '0' : '') + n;
-}
-function ceas() {
-seconds++;
-if (seconds>59) {
-seconds = 0;
-minute++;
-}
-if (minute>59) {
-minute = 0;
-hour24++;
-}
-if (hour24>23) {
-hour24 = 0;
-}
-if (hour24 >= 13 && hour24 <= 24) {
-y=12;
-hour12 = hour24-y;
-}
-if (hour24 >= 1 && hour24 <= 12) {
-hour12 = hour24;
-}
-var output = ""+minTwoDigits(hour12)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+""
+function minTwoDigits(n) {return (n < 10 ? '0' : '') + n;}
+function ceas() { seconds++;
+if (seconds>59) { seconds = 0;minute++;}
+if (minute>59)  { minute = 0;hour24++;}
+if (hour24 < 12){ ampm = " AM ";}
+if (hour24 > 12){ ampm = " PM ";}
+if (hour24 > 23){ hour24 = 0;}
+if (hour24 > 12){ hour = hour24 - 12;}
+
+var output = ""+minTwoDigits(hour)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+":"+ampm+""
 document.getElementById("clock").innerHTML = output;
 }
 window.onload = function(){
