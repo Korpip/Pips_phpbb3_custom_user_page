@@ -29,8 +29,9 @@ the_height;
 }
 //-->
 <!--
+var hourtimeoffset = 1;
 var hour24 = serverdate.getHours();
-var hour = hour24;
+var hour = 1;
 var minute = serverdate.getMinutes();
 var seconds = serverdate.getSeconds();
 var ampm = " PM "
@@ -41,10 +42,10 @@ if (seconds>59) { seconds = 0;minute++;}
 if (minute>59)  { minute = 0;hour24++;}
 if (hour24 < 12){ ampm = " AM ";}
 if (hour24 > 12){ ampm = " PM ";}
-if (hour24 > 23){ hour24 = 0;}
-if (hour24 > 12){ hour = hour24 - 12;}
+if (hour24 > 12){ hour = 1;}
+if (hour24 > 24){ hour24 = 1;}
 
-var output = ""+minTwoDigits(hour)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+":"+ampm+""
+var output = ""+minTwoDigits(hour)+":"+minTwoDigits(minute)+":"+minTwoDigits(seconds)+""+ampm+""
 document.getElementById("clock").innerHTML = output;
 }
 window.onload = function(){
